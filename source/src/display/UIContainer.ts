@@ -9,7 +9,7 @@ module fgui {
 
         public constructor() {
             super();
-            
+
             this.touchEnabled = true;
             this.touchChildren = true;
         }
@@ -66,8 +66,8 @@ module fgui {
             let ret: egret.DisplayObject = super.$hitTest(stageX, stageY);
             if (ret == this && !this.touchEnabled)
                 return null;
-
-            if (ret == null && this._opaque) {
+            // HORTOR MODIFY
+            if (ret == null && this._opaque && this.touchEnabled) {
                 let m: egret.Matrix = this._cachedHitArea ? this._cachedMatrix : this.$getInvertedConcatenatedMatrix();
                 let localX: number = m.a * stageX + m.c * stageY + m.tx;
                 let localY: number = m.b * stageX + m.d * stageY + m.ty;
